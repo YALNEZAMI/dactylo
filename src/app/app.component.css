@@ -1,0 +1,47 @@
+main{
+    padding: 10px;
+}
+.letter{
+background-color: white;
+color: black;
+padding: 0%;
+}
+.focusedLetter{
+    background-color: rgb(77, 101, 42);
+    padding: 2px;
+    color: white;
+    max-height: max-content;
+    border-radius: 20px;
+    text-decoration-line: underline;
+}
+
+#currentText{
+    min-height: 35vh;
+}
+#textAreaElement{
+    margin-top: 10%;
+    width: 100%;
+    padding: 10px;
+}
+#myText{
+    margin-top: 10px;
+    min-height: 35vh;
+}
+
+.mybtn{
+    margin: 2px;
+    min-width: 90px;
+}
+#result{
+    display: none;
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: max-content;
+    background-color: tomato;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+
+}
