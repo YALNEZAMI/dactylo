@@ -8,13 +8,17 @@ padding: 0%;
 }
 .focusedLetter{
     background-color: rgb(77, 101, 42);
-    padding: 2px;
+    padding: 1px;
     color: var(--currentBackColor);
     max-height: max-content;
     border-radius: 20px;
     text-decoration-line: underline;
 }
-
+#header{
+    padding: 10px;
+    background-color: black;
+    color: white;
+}
 #currentText{
     padding: 5px;
     border-radius: 10px;
@@ -25,6 +29,7 @@ padding: 0%;
     margin-top: 10%;
     width: 100%;
     padding: 10px;
+    border: 1px solid black;
 }
 #myText{
     padding: 5px;

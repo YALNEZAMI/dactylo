@@ -1,4 +1,5 @@
 <main>
+  <h4 id="header" class="text-center">Pratique la dactylographie !</h4>
   <!--current text:text to type-->
   <div class="container" id="currentText">
     <span
@@ -20,6 +21,7 @@
 
     <form (ngSubmit)="result()">
       <textarea
+        placeholder="Type here..."
         #textAreaElement
         [disabled]="currentText.length == textArea.length"
         (input)="check()"
