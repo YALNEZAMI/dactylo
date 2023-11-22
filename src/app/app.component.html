@@ -1,5 +1,11 @@
 <main>
-  <h4 id="header" class="text-center">Pratique la dactylographie !</h4>
+  <h4 *ngIf="currentLanguage == 'fr'" id="header" class="text-center">
+    Pratique la dactylographie !
+  </h4>
+  <h4 *ngIf="currentLanguage == 'en'" id="header" class="text-center">
+    Pratice dactylographie !
+  </h4>
+
   <!--text language-->
   <button class="btn btn-light" (click)="displayLangages()">
     <svg
