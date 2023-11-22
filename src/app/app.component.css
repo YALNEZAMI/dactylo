@@ -57,3 +57,35 @@ padding: 0%;
     border-radius: 10px;
 
 }
+.fixed{
+    display: none;
+    position: fixed;
+    top: 30%;
+    left: 10%;
+    width: 80%;
+    height: max-content;
+    background-color: tomato;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+#fr{
+    padding: 5px;
+    cursor: pointer;
+}
+#fr:hover{
+    background-color: rgb(77, 101, 42);
+    color: var(--currentBackColor);
+}
+#en{
+    padding: 5px;
+    cursor: pointer;
+}
+#en:hover{
+    background-color: rgb(77, 101, 42);
+    color: var(--currentBackColor);
+}
+#usaFlag{
+    width: 40px;
+    height: 30px;
+}

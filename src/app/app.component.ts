@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { textes } from '../textes';
+import { TEXTS_FR, TEXTS_EN, usaFlag } from '../textes';
 import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-root',
@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  usaFlag = usaFlag;
   nbrErrors: number = 0; //number of errors
   textArea: string = ''; //text from textarea
   @ViewChild('myText', { static: false }) myText: ElementRef = {} as ElementRef; //text which has been typed element
@@ -32,10 +33,9 @@ export class AppComponent {
     return array;
   }
   constructor() {
-    this.textes = this.shuffleArray(textes); //set textes
+    this.textes = this.shuffleArray(TEXTS_FR); //set textes
     this.currentText = this.textes[0]; //set current text
     this.currentTextTab = this.currentText.split(''); //set current text as array
-
     this.currentTextTab = this.currentTextTab.filter(
       (value: string) => value != '\n'
     ); //remove \n from array
@@ -94,13 +94,6 @@ export class AppComponent {
     this.textArea = ''; //reset textarea
     this.myText.nativeElement.innerHTML = ''; //reset myText
     //reset cursor
-    let newLetter = document.getElementById(
-      '' + this.cursor
-    ) as HTMLSpanElement;
-    if (newLetter) {
-      newLetter.style.background = 'white';
-      newLetter.style.color = 'black';
-    }
     this.cursor = 0;
     //length of my text
     this.displayedTextLength = 0;
@@ -177,10 +170,10 @@ export class AppComponent {
   }
   //go to next text
   next() {
-    this.restart();
     let i = this.textes.indexOf(this.currentText) + 1;
     this.currentTextTab = this.textes[i].split('');
     this.currentText = this.textes[i];
+    this.restart();
   }
   //go to previous text
   previous() {
@@ -196,5 +189,38 @@ export class AppComponent {
   //get if there is no previous text
   noPreviousText() {
     return this.textes.indexOf(this.currentText) == 0;
+  }
+  displayLangages() {
+    let languages = document.getElementById('languages') as HTMLDivElement;
+    if (languages.style.display == 'block') {
+      languages.style.display = 'none';
+    } else {
+      languages.style.display = 'block';
+    }
+  }
+  changeLanguage(lang: string) {
+    switch (lang) {
+      case 'fr':
+        this.textes = this.shuffleArray(TEXTS_FR); //set textes
+        this.currentText = this.textes[0]; //set current text
+        this.currentTextTab = this.currentText.split(''); //set current text as array
+        this.currentTextTab = this.currentTextTab.filter(
+          (value: string) => value != '\n'
+        ); //remove \n from array
+        break;
+      case 'en':
+        this.textes = this.shuffleArray(TEXTS_EN); //set textes
+        this.currentText = this.textes[0]; //set current text
+        this.currentTextTab = this.currentText.split(''); //set current text as array
+        this.currentTextTab = this.currentTextTab.filter(
+          (value: string) => value != '\n'
+        ); //remove \n from array
+        break;
+
+      default:
+        break;
+    }
+    this.displayLangages();
+    this.restart();
   }
 }
