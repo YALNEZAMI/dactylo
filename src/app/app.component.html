@@ -72,6 +72,7 @@
     <!--next text button-->
 
     <button
+      title="next"
       id="next"
       [disabled]="noNextText()"
       (click)="next()"
@@ -93,6 +94,7 @@
     </button>
     <!--previous text button-->
     <button
+      title="previous"
       [disabled]="noPreviousText()"
       (click)="previous()"
       class="btn btn-warning mybtn"
@@ -113,6 +115,7 @@
     </button>
     <!--score button(activated at the end)-->
     <button
+      title="score"
       [disabled]="!isEnableScore()"
       (click)="result()"
       class="btn btn-light mybtn"
@@ -135,7 +138,7 @@
       </svg>
     </button>
     <!--restart button-->
-    <button (click)="restart()" class="btn btn-primary mybtn">
+    <button title="restart" (click)="restart()" class="btn btn-primary mybtn">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
