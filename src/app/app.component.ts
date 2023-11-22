@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  currentLanguage: string = 'fr';
   usaFlag = usaFlag;
   nbrErrors: number = 0; //number of errors
   textArea: string = ''; //text from textarea
@@ -199,6 +200,12 @@ export class AppComponent {
     }
   }
   changeLanguage(lang: string) {
+    this.displayLangages();
+
+    if (lang == this.currentLanguage) {
+      return;
+    }
+    this.currentLanguage = lang;
     switch (lang) {
       case 'fr':
         this.textes = this.shuffleArray(TEXTS_FR); //set textes
@@ -220,7 +227,6 @@ export class AppComponent {
       default:
         break;
     }
-    this.displayLangages();
     this.restart();
   }
 }
