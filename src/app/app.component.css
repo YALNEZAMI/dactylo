@@ -2,20 +2,23 @@ main{
     padding: 10px;
 }
 .letter{
-background-color: white;
-color: black;
+background-color: var(--currentBackColor);
+color: var(--currentTextColor);
 padding: 0%;
 }
 .focusedLetter{
     background-color: rgb(77, 101, 42);
     padding: 2px;
-    color: white;
+    color: var(--currentBackColor);
     max-height: max-content;
     border-radius: 20px;
     text-decoration-line: underline;
 }
 
 #currentText{
+    padding: 5px;
+    border-radius: 10px;
+    background-color: var(--currentBackColor);
     min-height: 200px;
 }
 #textAreaElement{
@@ -24,13 +27,17 @@ padding: 0%;
     padding: 10px;
 }
 #myText{
+    padding: 5px;
+    border-radius: 10px;
+    background-color: var(--myBackColor);
+    color: var(--myTextColor);
     margin-top: 10px;
     min-height: 200px;
 }
 
 .mybtn{
-    margin: 2px;
-    min-width: 90px;
+    margin: 4px;
+    min-width: 22%;
 }
 #result{
     display: none;
