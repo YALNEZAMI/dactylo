@@ -1,6 +1,13 @@
 main{
     padding: 10px;
 }
+footer{
+    margin-top: 5px;
+    padding: 10px;
+    background-color: black;
+    color: white;
+
+}
 .letter{
 background-color: var(--currentBackColor);
 color: var(--currentTextColor);
