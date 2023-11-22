@@ -35,6 +35,8 @@ export class AppComponent {
   }
   constructor() {
     this.textes = this.shuffleArray(TEXTS_FR); //set textes
+    this.textes.unshift('Jules Beck est le meilleure à la dactylographie'); //add empty text to the beginning of the array
+
     this.currentText = this.textes[0]; //set current text
     this.currentTextTab = this.currentText.split(''); //set current text as array
     this.currentTextTab = this.currentTextTab.filter(
