@@ -127,6 +127,7 @@ export class AppComponent {
     if (this.textArea.length == this.currentText.length) {
       this.dateEnd = new Date();
       this.enableScore = true;
+      this.result();
     }
     //get text from textarea as array
     let tabMyText = this.textArea.split('');

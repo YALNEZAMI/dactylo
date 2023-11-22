@@ -33,7 +33,7 @@ padding: 0%;
     min-width: 90px;
 }
 #result{
-    display: block;
+    display: none;
     position: fixed;
     top: 30%;
     left: 10%;
