@@ -104,6 +104,13 @@ export class AppComponent {
     this.cursor = 0;
     //length of my text
     this.displayedTextLength = 0;
+    //focus on textarea
+    setTimeout(() => {
+      //focus on textarea
+      if (this.textAreaElement && this.textAreaElement.nativeElement) {
+        this.textAreaElement.nativeElement.focus();
+      }
+    });
     return;
   }
   //on input, amke checking
