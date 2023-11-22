@@ -33,11 +33,11 @@ padding: 0%;
     min-width: 90px;
 }
 #result{
-    display: none;
+    display: block;
     position: fixed;
-    top: 25%;
-    left: 25%;
-    width: 50%;
+    top: 30%;
+    left: 10%;
+    width: 80%;
     height: max-content;
     background-color: tomato;
     color: white;
