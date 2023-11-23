@@ -35,7 +35,7 @@ export class AppComponent {
   }
   constructor() {
     this.textes = this.shuffleArray(TEXTS_FR); //set textes
-    this.textes.unshift('Jules Beck est le meilleure à la dactylographie'); //add empty text to the beginning of the array
+    this.textes.unshift('Jules œ Beck est le meilleure à la dactylographie'); //add empty text to the beginning of the array
 
     this.currentText = this.textes[0]; //set current text
     this.currentTextTab = this.currentText.split(''); //set current text as array
@@ -55,6 +55,11 @@ export class AppComponent {
   //move cursor forward
 
   getCurrentTextTab() {
+    this.currentTextTab = this.currentTextTab.map((value: string) => {
+      //no special character
+      value = value.replace('œ', 'oe');
+      return value;
+    });
     return this.currentTextTab;
   }
   //get the time between start and end of the test
