@@ -26,16 +26,14 @@ export class AppComponent {
   enableScore: boolean = false; //enable score(activated at the end)
   cursor: number = 0; //position of cursor in the current text array
   displayedTextLength: number = 0; //length of my text
-  shuffleArray(array: any[]) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1)); // Index aléatoire entre 0 et i inclus
-      [array[i], array[j]] = [array[j], array[i]]; // Échange des éléments aux positions i et j
-    }
-    return array;
-  }
+
   constructor() {
-    this.textes = this.shuffleArray(TEXTS_FR); //set textes
-    this.textes.unshift('Jules œ Beck est le meilleure à la dactylographie'); //add empty text to the beginning of the array
+    //filter special characters
+    const TEXTS_FR_WithoutSpecialCaracter: any[] = TEXTS_FR.map((text) => {
+      return this.noSpecialCaracter(text);
+    });
+    this.textes = this.shuffleArray(TEXTS_FR_WithoutSpecialCaracter); //set textes
+    this.textes.unshift('Jules Beck est le meilleure à la dactylographie'); //add empty text to the beginning of the array
 
     this.currentText = this.textes[0]; //set current text
     this.currentTextTab = this.currentText.split(''); //set current text as array
@@ -49,21 +47,25 @@ export class AppComponent {
       }
     });
   }
+  shuffleArray(array: any[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1)); // Index aléatoire entre 0 et i inclus
+      [array[i], array[j]] = [array[j], array[i]]; // Échange des éléments aux positions i et j
+    }
+    return array;
+  }
+  noSpecialCaracter(text: string) {
+    return text.replace('œ', 'oe');
+  }
   focusedLetter(i: number) {
     return i == this.cursor;
   }
-  //move cursor forward
-
+  //get the current text as array
   getCurrentTextTab() {
-    this.currentTextTab = this.currentTextTab.map((value: string) => {
-      //no special character
-      value = value.replace('œ', 'oe');
-      return value;
-    });
     return this.currentTextTab;
   }
   //get the time between start and end of the test
-  timeOut() {
+  getTestTime() {
     let time: any = this.dateEnd.getTime() - this.dateStart.getTime();
     time = time / 60000;
     time = time.toFixed(2);
@@ -114,7 +116,7 @@ export class AppComponent {
     });
     return;
   }
-  //on input, amke checking
+  //on input, make checking
   check() {
     //if user deleted somthing return, else updating m text length
     if (this.textArea.length == this.displayedTextLength + 1) {
@@ -173,7 +175,7 @@ export class AppComponent {
   }
   //get the speed of typing
   getSpeed() {
-    let res = this.nbrWords() / this.timeOut();
+    let res = this.nbrWords() / this.getTestTime();
     return res.toFixed(0);
   }
   //go to next text
@@ -215,7 +217,13 @@ export class AppComponent {
     this.currentLanguage = lang;
     switch (lang) {
       case 'fr':
-        this.textes = this.shuffleArray(TEXTS_FR); //set textes
+        //filter special characters
+        const TEXTS_FR_WithoutSpecialCaracter: string[] = TEXTS_FR.map(
+          (text) => {
+            return this.noSpecialCaracter(text);
+          }
+        );
+        this.textes = this.shuffleArray(TEXTS_FR_WithoutSpecialCaracter); //set textes
         this.currentText = this.textes[0]; //set current text
         this.currentTextTab = this.currentText.split(''); //set current text as array
         this.currentTextTab = this.currentTextTab.filter(
@@ -223,7 +231,13 @@ export class AppComponent {
         ); //remove \n from array
         break;
       case 'en':
-        this.textes = this.shuffleArray(TEXTS_EN); //set textes
+        //filter special characters
+        const TEXTS_EN_WithoutSpecialCaracter: string[] = TEXTS_EN.map(
+          (text) => {
+            return this.noSpecialCaracter(text);
+          }
+        );
+        this.textes = this.shuffleArray(TEXTS_EN_WithoutSpecialCaracter); //set textes
         this.currentText = this.textes[0]; //set current text
         this.currentTextTab = this.currentText.split(''); //set current text as array
         this.currentTextTab = this.currentTextTab.filter(
