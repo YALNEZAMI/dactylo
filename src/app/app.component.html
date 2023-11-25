@@ -1,9 +1,6 @@
 <main>
-  <h4 *ngIf="currentLanguage == 'fr'" id="header" class="text-center">
-    Pratique la dactylographie !
-  </h4>
-  <h4 *ngIf="currentLanguage == 'en'" id="header" class="text-center">
-    Pratice typing !
+  <h4 id="header" class="text-center">
+    {{ getHeaderSentence() }}
   </h4>
 
   <!--text language-->
@@ -164,7 +161,7 @@
     </button>
   </div>
   <!--result div-->
-  <div id="result">
+  <div *ngIf="currentLanguage == 'en'" id="result">
     <h3 class="text-center"><ins>Results:</ins></h3>
     <!--typeing speed (word per minute)-->
     <div class="text-center">Speed: {{ getSpeed() }} wpm</div>
@@ -173,7 +170,17 @@
     <!--hide result div button-->
     <button (click)="result()" class="btn btn-warning">finish</button>
   </div>
+  <div *ngIf="currentLanguage == 'fr'" id="result">
+    <h3 class="text-center"><ins>Resultats:</ins></h3>
+    <!--typeing speed (word per minute)-->
+    <div class="text-center">Vitesse: {{ getSpeed() }} mpm</div>
+    <!--number of errors-->
+    <div class="text-center">Erreurs: {{ nbrErrors }} erreurs</div>
+    <!--hide result div button-->
+    <button (click)="result()" class="btn btn-warning">terminé</button>
+  </div>
   <footer class="text-center">
-    All rights reserved, <a href="mailto:yaseralnezami@gmail.com">contact</a>
+    {{ getFooterSentence() }},
+    <a href="mailto:yaseralnezami@gmail.com">contact</a>
   </footer>
 </main>

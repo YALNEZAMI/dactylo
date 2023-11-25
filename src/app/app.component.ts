@@ -250,4 +250,35 @@ export class AppComponent {
     }
     this.restart();
   }
+  getFooterSentence() {
+    switch (this.currentLanguage) {
+      case 'fr':
+        return ' Tous droits réservés';
+        break;
+      case 'en':
+        return ' All rights reserved';
+        break;
+
+      default:
+        return ' Tous droits réservés';
+
+        break;
+    }
+  }
+  getHeaderSentence() {
+    switch (this.currentLanguage) {
+      case 'fr':
+        return 'Pratiquez la dactylographie !';
+
+        break;
+      case 'en':
+        return 'Practice typing !';
+        break;
+
+      default:
+        return 'Pratiquez la dactylographie !';
+
+        break;
+    }
+  }
 }
