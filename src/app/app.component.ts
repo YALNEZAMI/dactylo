@@ -58,7 +58,7 @@ export class AppComponent {
     text = text.replace('’', "'");
     return text.replace('œ', 'oe');
   }
-  focusedLetter(i: number) {
+  isFocusedLetter(i: number) {
     return i == this.cursor;
   }
   //get the current text as array
