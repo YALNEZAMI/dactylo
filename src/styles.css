@@ -5,3 +5,8 @@
     --myBackColor:rgb(225, 216, 216);
     --myTextColor: black;
 }
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
