@@ -55,6 +55,7 @@ export class AppComponent {
     return array;
   }
   noSpecialCaracter(text: string) {
+    text = text.replace('’', "'");
     return text.replace('œ', 'oe');
   }
   focusedLetter(i: number) {
