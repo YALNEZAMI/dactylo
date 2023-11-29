@@ -40,20 +40,6 @@
       <img [src]="usaFlag" alt="EN" id="usaFlag" />
     </div>
   </div>
-  <!--current text:text to type-->
-  <div class="container" id="currentText">
-    <span
-      [ngClass]="{
-      letter:!isFocusedLetter(i),
-      focusedLetter:isFocusedLetter(i),
-
-    }"
-      *ngFor="let letter of getCurrentTextTab(); let i = index"
-      [id]="i"
-      >{{ letter }}</span
-    >
-  </div>
-  <hr />
   <div class="container">
     <!--my text:text which has been typed-->
     <div class="container" id="myText" #myText></div>
@@ -161,6 +147,22 @@
       </svg>
     </button>
   </div>
+  <hr />
+
+  <!--current text:text to type-->
+  <div class="container" id="currentText">
+    <span
+      [ngClass]="{
+      letter:!isFocusedLetter(i),
+      focusedLetter:isFocusedLetter(i),
+
+    }"
+      *ngFor="let letter of getCurrentTextTab(); let i = index"
+      [id]="i"
+      >{{ letter }}</span
+    >
+  </div>
+
   <!--result div-->
   <div *ngIf="currentLanguage == 'en'" id="result">
     <h3 class="text-center"><ins>Results:</ins></h3>
