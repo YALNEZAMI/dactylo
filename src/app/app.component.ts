@@ -33,7 +33,7 @@ export class AppComponent {
       return this.noSpecialCaracter(text);
     });
     this.textes = this.shuffleArray(TEXTS_FR_WithoutSpecialCaracter); //set textes
-    this.textes.unshift('Jules Beck est le meilleure à la dactylographie'); //add empty text to the beginning of the array
+    this.textes.unshift('Jules Beck est le meilleur à la dactylographie'); //add empty text to the beginning of the array
 
     this.currentText = this.textes[0]; //set current text
     this.currentTextTab = this.currentText.split(''); //set current text as array
@@ -56,7 +56,16 @@ export class AppComponent {
   }
   noSpecialCaracter(text: string) {
     text = text.replace('’', "'");
-    return text.replace('œ', 'oe');
+    text = text.replace('œ', 'oe');
+    text = text.replace('Œ', 'Oe');
+    text = text.replace('É', 'E');
+    text = text.replace('À', 'A');
+    text = text.replace('È', 'E');
+    text = text.replace('Ê', 'E');
+    text = text.replace('Ë', 'E');
+    text = text.replace('Ï', 'I');
+
+    return text;
   }
   isFocusedLetter(i: number) {
     return i == this.cursor;
