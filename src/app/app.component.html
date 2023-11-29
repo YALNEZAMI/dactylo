@@ -43,7 +43,20 @@
   <div class="container">
     <!--my text:text which has been typed-->
     <div class="container" id="myText" #myText></div>
-    <!-- texterea:fild to type-->
+    <!--current text:text to type-->
+    <div class="container" id="currentText">
+      <span
+        [ngClass]="{
+      letter:!isFocusedLetter(i),
+      focusedLetter:isFocusedLetter(i),
+
+    }"
+        *ngFor="let letter of getCurrentTextTab(); let i = index"
+        [id]="i"
+        >{{ letter }}</span
+      >
+    </div>
+    <!-- texterea:field to type-->
 
     <form id="textAreaForm" (ngSubmit)="result()">
       <textarea
@@ -148,20 +161,6 @@
     </button>
   </div>
   <hr />
-
-  <!--current text:text to type-->
-  <div class="container" id="currentText">
-    <span
-      [ngClass]="{
-      letter:!isFocusedLetter(i),
-      focusedLetter:isFocusedLetter(i),
-
-    }"
-      *ngFor="let letter of getCurrentTextTab(); let i = index"
-      [id]="i"
-      >{{ letter }}</span
-    >
-  </div>
 
   <!--result div-->
   <div *ngIf="currentLanguage == 'en'" id="result">
