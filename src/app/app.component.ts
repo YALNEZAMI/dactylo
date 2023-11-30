@@ -33,7 +33,7 @@ export class AppComponent {
       return this.noSpecialCaracter(text);
     });
     this.textes = this.shuffleArray(TEXTS_FR_WithoutSpecialCaracter); //set textes
-    this.textes.unshift('Jules Beck est le meilleur à la dactylographie'); //add empty text to the beginning of the array
+    this.textes.unshift(`Commençons...`); //add empty text to the beginning of the array
 
     this.currentText = this.textes[0]; //set current text
     this.currentTextTab = this.currentText.split(''); //set current text as array
