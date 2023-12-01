@@ -64,6 +64,7 @@ export class AppComponent {
     text = text.replace('Ê', 'E');
     text = text.replace('Ë', 'E');
     text = text.replace('Ï', 'I');
+    text = text.replace('ï', 'i');
 
     return text;
   }
