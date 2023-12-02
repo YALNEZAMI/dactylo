@@ -42,17 +42,9 @@
   </div>
   <hr />
   <div class="container">
-    <!--my text:text which has been typed-->
-    <div class="container" id="myText" #myText></div>
-    <hr />
     <!--current text:text to type-->
     <div class="container" id="currentText">
       <span
-        [ngClass]="{
-      letter:!isFocusedLetter(i),
-      focusedLetter:isFocusedLetter(i),
-
-    }"
         *ngFor="let letter of getCurrentTextTab(); let i = index"
         [id]="i"
         >{{ letter }}</span

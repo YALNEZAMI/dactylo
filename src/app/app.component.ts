@@ -15,7 +15,6 @@ export class AppComponent {
   usaFlag = usaFlag;
   nbrErrors: number = 0; //number of errors
   textArea: string = ''; //text from textarea
-  @ViewChild('myText', { static: false }) myText: ElementRef = {} as ElementRef; //text which has been typed element
   @ViewChild('textAreaElement', { static: false }) textAreaElement: ElementRef =
     {} as ElementRef; //textarea element
   currentText: string = ''; //current text to be typed
@@ -109,13 +108,20 @@ export class AppComponent {
   }
   //restart the test
   restart() {
+    //remove bg-success and bg-danger classes
+    let length = this.currentText.length;
+    for (let i = 0; i < length; i++) {
+      const element = document.getElementById('' + i) as HTMLDivElement;
+      element.className = '';
+    }
     this.enableScore = false; //disable score
     this.hideResult(); //hide result div
     this.nbrErrors = 0; //reset number of errors
     this.textArea = ''; //reset textarea
-    this.myText.nativeElement.innerHTML = ''; //reset myText
     //reset cursor
     this.cursor = 0;
+    console.log(this.cursor);
+
     //length of my text
     this.displayedTextLength = 0;
     //focus on textarea
@@ -159,28 +165,21 @@ export class AppComponent {
     //remove \n from array
     tabCurrentText = tabCurrentText.filter((value) => value != '\n');
 
-    let result = '';
     //my letter
     const mine = tabMyText[tabMyText.length - 1];
     //expected letter
     const expect = tabCurrentText[tabMyText.length - 1];
-
+    let letterhtml = document.getElementById(
+      '' + this.cursor
+    ) as HTMLDivElement;
     if (mine == expect) {
-      //if the 2 letters are the same
-      //add letter to result
-      result = mine;
+      letterhtml.className = 'bg-success';
     } else {
       //if the 2 letters are not the same
       //add 1 to nbrErrors
       this.nbrErrors++;
-      //add letter to result with red color
-      result =
-        '<span class="text-danger" style="color:red"><ins>' +
-        mine +
-        '</ins></span>';
+      letterhtml.className = 'bg-danger';
     }
-    //add result to myText
-    this.myText.nativeElement.innerHTML += result;
     //move cursor
     this.cursor++;
   }
