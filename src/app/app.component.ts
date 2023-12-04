@@ -115,6 +115,8 @@ export class AppComponent {
       this.hideResult();
     } else {
       result.style.display = 'block';
+      this.hideLangages();
+      this.hideEditText();
     }
   }
   hideResult() {
@@ -246,10 +248,16 @@ export class AppComponent {
   displayLangages() {
     let languages = document.getElementById('languages') as HTMLDivElement;
     if (languages.style.display == 'block') {
-      languages.style.display = 'none';
+      this.hideLangages();
     } else {
       languages.style.display = 'block';
+      this.hideResult();
+      this.hideEditText();
     }
+  }
+  hideLangages() {
+    let languages = document.getElementById('languages') as HTMLDivElement;
+    languages.style.display = 'none';
   }
   changeLanguage(lang: string) {
     this.displayLangages();
@@ -422,8 +430,6 @@ export class AppComponent {
     }
   }
   editText() {
-    console.log('editText');
-
     this.displayEditText();
     this.currentText = this.editedText;
   }
@@ -433,6 +439,8 @@ export class AppComponent {
       this.hideEditText();
     } else {
       result.style.display = 'block';
+      this.hideResult();
+      this.hideLangages();
     }
   }
   hideEditText() {
