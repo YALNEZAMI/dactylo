@@ -30,13 +30,13 @@ export class AppComponent {
       flag: ArabeFlag,
     },
   ];
+  editedText: string = '';
   currentLanguage: string = 'fr';
   nbrErrors: number = 0; //number of errors
   textArea: string = ''; //text from textarea
   @ViewChild('textAreaElement', { static: false }) textAreaElement: ElementRef =
     {} as ElementRef; //textarea element
   currentText: string = ''; //current text to be typed
-  currentTextTab: any = ''; //current text to be typed as array(to get each letter and move the cursor)
   textes: string[] = []; //set of all available texts
   dateStart: Date = new Date(); //start time
   dateEnd: Date = new Date(); //end time
@@ -53,10 +53,9 @@ export class AppComponent {
     // this.textes.unshift(`Commençons...`); //add empty text to the beginning of the array
 
     this.currentText = this.textes[0]; //set current text
-    this.currentTextTab = this.currentText.split(''); //set current text as array
-    this.currentTextTab = this.currentTextTab.filter(
-      (value: string) => value != '\n'
-    ); //remove \n from array
+    //set edited text to current text
+    this.editedText = this.currentText;
+
     setTimeout(() => {
       //focus on textarea
       if (this.textAreaElement && this.textAreaElement.nativeElement) {
@@ -90,7 +89,9 @@ export class AppComponent {
   }
   //get the current text as array
   getCurrentTextTab() {
-    return this.currentTextTab;
+    let tab = this.currentText.split('');
+    tab = tab.filter((value: string) => value != '\n'); //remove \n from array
+    return tab;
   }
   //get the time between start and end of the test
   getTestTime() {
@@ -128,6 +129,8 @@ export class AppComponent {
   restart() {
     //first restart
     setTimeout(() => {
+      //set edited text to current text
+      this.editedText = this.currentText;
       //remove bg-success and bg-danger classes
       let length = this.currentText.length;
       for (let i = 0; i < length; i++) {
@@ -223,7 +226,6 @@ export class AppComponent {
   //go to next text
   next() {
     let i = this.textes.indexOf(this.currentText) + 1;
-    this.currentTextTab = this.textes[i].split('');
     this.currentText = this.textes[i];
     this.restart();
   }
@@ -231,7 +233,6 @@ export class AppComponent {
   previous() {
     this.restart();
     let i = this.textes.indexOf(this.currentText) - 1;
-    this.currentTextTab = this.textes[i].split('');
     this.currentText = this.textes[i];
   }
   //get if there is no next text
@@ -267,10 +268,7 @@ export class AppComponent {
         );
         this.textes = this.shuffleArray(TEXTS_FR_WithoutSpecialCaracter); //set textes
         this.currentText = this.textes[0]; //set current text
-        this.currentTextTab = this.currentText.split(''); //set current text as array
-        this.currentTextTab = this.currentTextTab.filter(
-          (value: string) => value != '\n'
-        ); //remove \n from array
+
         break;
       case 'en':
         //filter special characters
@@ -281,10 +279,7 @@ export class AppComponent {
         );
         this.textes = this.shuffleArray(TEXTS_EN_WithoutSpecialCaracter); //set textes
         this.currentText = this.textes[0]; //set current text
-        this.currentTextTab = this.currentText.split(''); //set current text as array
-        this.currentTextTab = this.currentTextTab.filter(
-          (value: string) => value != '\n'
-        ); //remove \n from array
+
         break;
       case 'ar':
         //filter special characters
@@ -295,10 +290,7 @@ export class AppComponent {
         );
         this.textes = this.shuffleArray(TEXTS_AR_WithoutSpecialCaracter); //set textes
         this.currentText = this.textes[0]; //set current text
-        this.currentTextTab = this.currentText.split(''); //set current text as array
-        this.currentTextTab = this.currentTextTab.filter(
-          (value: string) => value != '\n'
-        ); //remove \n from array
+
         break;
 
       default:
@@ -415,5 +407,36 @@ export class AppComponent {
       default:
         return 'mots/min';
     }
+  }
+  getEditTrans() {
+    switch (this.currentLanguage) {
+      case 'fr':
+        return 'Modifier';
+      case 'en':
+        return 'Edit';
+      case 'ar':
+        return 'تعديل';
+
+      default:
+        return 'Modifier';
+    }
+  }
+  editText() {
+    console.log('editText');
+
+    this.displayEditText();
+    this.currentText = this.editedText;
+  }
+  displayEditText() {
+    let result = document.getElementById('editText') as HTMLDivElement;
+    if (result.style.display == 'block') {
+      this.hideEditText();
+    } else {
+      result.style.display = 'block';
+    }
+  }
+  hideEditText() {
+    let result = document.getElementById('editText') as HTMLDivElement;
+    result.style.display = 'none';
   }
 }

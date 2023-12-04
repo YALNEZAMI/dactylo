@@ -32,11 +32,16 @@ padding: 0%;
     color: white;
 }
 #currentText{
+    position: relative;
     padding: 5px;
+    padding-right: 25px;
+    padding-left: 10px;
     border-radius: 10px;
     background-color: var(--currentBackColor);
-    min-height: 200px;
+    height: 300px;
+    overflow-y: auto;
 }
+
 #textAreaElement{
     /* visibility: hidden; */
     margin-top: 3%;
@@ -74,7 +79,7 @@ padding: 0%;
     border-radius: 10px;
 
 }
-.fixed{
+#languages{
     display: none;
     position: fixed;
     top: 30%;
@@ -87,7 +92,6 @@ padding: 0%;
     border-radius: 10px;
     z-index: 2;
     overflow-y: auto;
-
 }
 .language{
     margin: 3PX;
@@ -137,4 +141,29 @@ padding: 0%;
 #usaFlag{
     width: 40px;
     height: 30px;
+}
+#displayEditTextBtn{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 3;
+    padding: 2px;
+
+}
+#editedTextBtn{
+    width: 50%;
+}
+#finishEditTextBtn{
+    width: 50%;
+}
+#editText{
+    display: none;
+    width: 90%;
+    height: max-content;
+    position: fixed;
+    top: 25%;
+    left: 5%;
+    background-color: black;
+    z-index: 3;
+    padding: 2px;
 }
