@@ -32,14 +32,20 @@
         focusedLanguage: language.code == currentLanguage
       }"
     >
-      <span>{{ language.name }}</span>
-      <img
+      <div [ngClass]="{ languageName: true }">{{ language.name }}</div>
+      <div
         [ngClass]="{
-          flag: true
-        }"
-        [src]="language.flag"
-        alt=""
-      />
+        flagDiv: true,
+      }"
+      >
+        <img
+          [ngClass]="{
+            flag: true
+          }"
+          [src]="language.flag"
+          alt=""
+        />
+      </div>
     </div>
   </div>
   <hr />

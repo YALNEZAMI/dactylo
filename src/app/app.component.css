@@ -81,18 +81,32 @@ padding: 0%;
     left: 10vw;
     width: 80vw;
     height: max-content;
-    background-color: tomato;
+    background-color: rgb(165, 139, 135);
     color: white;
     padding: 10px;
     border-radius: 10px;
     z-index: 2;
+    overflow-y: auto;
+
 }
 .language{
+    margin: 3PX;
     padding: 3px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
 }
 .language:hover{
-    background-color: rgb(77, 101, 42);
+    background-color: rgb(87, 102, 64);
     color: var(--currentBackColor);
+}
+.languageName{
+    width: 50%;
+    text-align: right;
+}
+.flagDiv{
+    width: 50%;
+    text-align: left;
 }
 .focusedLanguage{
     background-color: rgb(77, 101, 42);
