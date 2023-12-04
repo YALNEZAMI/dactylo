@@ -78,13 +78,14 @@ padding: 0%;
     display: none;
     position: fixed;
     top: 30%;
-    left: 10%;
-    width: 80%;
+    left: 10vw;
+    width: 80vw;
     height: max-content;
     background-color: tomato;
     color: white;
     padding: 10px;
     border-radius: 10px;
+    z-index: 2;
 }
 .language{
     padding: 3px;

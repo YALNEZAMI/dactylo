@@ -120,7 +120,6 @@ export class AppComponent {
     let result = document.getElementById('result') as HTMLDivElement;
     result.style.display = 'none';
   }
-  //TODO automate all for all languages
   //get the current text
   getCurrentText() {
     return this.currentText;
@@ -315,6 +314,9 @@ export class AppComponent {
       case 'en':
         return ' All rights reserved';
         break;
+      case 'ar':
+        return ' جميع الحقوق محفوظة';
+        break;
 
       default:
         return ' Tous droits réservés';
@@ -327,15 +329,91 @@ export class AppComponent {
       case 'fr':
         return 'Pratiquez la dactylographie !';
 
-        break;
       case 'en':
         return 'Practice typing !';
-        break;
+      case 'ar':
+        return 'تمرن على الكتابة بالحاسوب';
 
       default:
         return 'Pratiquez la dactylographie !';
+    }
+  }
+  getPlaceholder() {
+    switch (this.currentLanguage) {
+      case 'fr':
+        return 'Tapez ici...';
+      case 'en':
+        return 'Type here...';
+      case 'ar':
+        return 'اكتب هنا...';
 
-        break;
+      default:
+        return 'Tapez ici...';
+    }
+  }
+  getResultTrans() {
+    switch (this.currentLanguage) {
+      case 'fr':
+        return 'Résultat';
+      case 'en':
+        return 'Result';
+      case 'ar':
+        return 'النتيجة';
+
+      default:
+        return 'Résultat';
+    }
+  }
+  getSpeedTrans() {
+    switch (this.currentLanguage) {
+      case 'fr':
+        return 'Vitesse';
+      case 'en':
+        return 'Speed';
+      case 'ar':
+        return 'السرعة';
+
+      default:
+        return 'Vitesse';
+    }
+  }
+  getErrorsTrans() {
+    switch (this.currentLanguage) {
+      case 'fr':
+        return 'Erreurs';
+      case 'en':
+        return 'Errors';
+      case 'ar':
+        return 'الأخطاء';
+
+      default:
+        return 'Erreurs';
+    }
+  }
+  getFinishTrans() {
+    switch (this.currentLanguage) {
+      case 'fr':
+        return 'Terminé';
+      case 'en':
+        return 'Finished';
+      case 'ar':
+        return 'انتهى';
+
+      default:
+        return 'Terminé';
+    }
+  }
+  getUnitySpeedTrans() {
+    switch (this.currentLanguage) {
+      case 'fr':
+        return 'mots/min';
+      case 'en':
+        return 'words/min';
+      case 'ar':
+        return 'كلمة/دقيقة';
+
+      default:
+        return 'mots/min';
     }
   }
 }
