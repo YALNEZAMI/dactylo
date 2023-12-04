@@ -3,7 +3,7 @@
     {{ getHeaderSentence() }}
   </h4>
 
-  <!--text language-->
+  <!--text language button-->
   <button class="btn btn-light" (click)="displayLangages()">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,26 +18,28 @@
       />
     </svg>
   </button>
+  <!--languages div-->
   <div class="fixed" id="languages">
     <div>
       <button (click)="displayLangages()" class="btn btn-danger">x</button>
     </div>
-    <div class="text-center" id="fr" (click)="changeLanguage('fr')">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 160 120"
-        width="40"
-        height="30"
-      >
-        <g id="flag">
-          <rect width="53.4" height="120" x="0" fill="#0055A4" />
-          <rect width="53.4" height="120" x="106.6" fill="#ED2939" />
-          <rect width="53.4" height="120" x="53.3" fill="#FFF" />
-        </g>
-      </svg>
-    </div>
-    <div class="text-center" id="en" (click)="changeLanguage('en')">
-      <img [src]="usaFlag" alt="EN" id="usaFlag" />
+    <div
+      (click)="changeLanguage(language.code)"
+      *ngFor="let language of languages"
+      [ngClass]="{
+        language: true,
+        'text-center': true,
+        focusedLanguage: language.code == currentLanguage
+      }"
+    >
+      <span>{{ language.name }}</span>
+      <img
+        [ngClass]="{
+          flag: true
+        }"
+        [src]="language.flag"
+        alt=""
+      />
     </div>
   </div>
   <hr />
@@ -54,6 +56,7 @@
 
     <form id="textAreaForm" (ngSubmit)="result()">
       <textarea
+        autofocus
         class="form-control"
         placeholder="Type here..."
         #textAreaElement

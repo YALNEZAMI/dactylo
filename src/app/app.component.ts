@@ -1,7 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { TEXTS_FR, TEXTS_EN, usaFlag } from '../textes';
+import { TEXTS_FR, TEXTS_EN, TEXTS_AR } from '../textes';
+import { UsaFlag, FranceFlag, ArabeFlag } from '../flags';
+
 import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-root',
@@ -11,8 +13,24 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  languages: any[] = [
+    {
+      name: 'Français',
+      code: 'fr',
+      flag: FranceFlag,
+    },
+    {
+      name: 'English',
+      code: 'en',
+      flag: UsaFlag,
+    },
+    {
+      name: 'العربية',
+      code: 'ar',
+      flag: ArabeFlag,
+    },
+  ];
   currentLanguage: string = 'fr';
-  usaFlag = usaFlag;
   nbrErrors: number = 0; //number of errors
   textArea: string = ''; //text from textarea
   @ViewChild('textAreaElement', { static: false }) textAreaElement: ElementRef =
@@ -102,35 +120,50 @@ export class AppComponent {
     let result = document.getElementById('result') as HTMLDivElement;
     result.style.display = 'none';
   }
+  //TODO automate all for all languages
   //get the current text
   getCurrentText() {
     return this.currentText;
   }
   //restart the test
   restart() {
-    //remove bg-success and bg-danger classes
-    let length = this.currentText.length;
-    for (let i = 0; i < length; i++) {
-      const element = document.getElementById('' + i) as HTMLDivElement;
-      element.className = '';
-    }
-    this.enableScore = false; //disable score
-    this.hideResult(); //hide result div
-    this.nbrErrors = 0; //reset number of errors
-    this.textArea = ''; //reset textarea
-    //reset cursor
-    this.cursor = 0;
-    console.log(this.cursor);
-
-    //length of my text
-    this.displayedTextLength = 0;
-    //focus on textarea
+    //first restart
     setTimeout(() => {
+      //remove bg-success and bg-danger classes
+      let length = this.currentText.length;
+      for (let i = 0; i < length; i++) {
+        const element = document.getElementById('' + i) as HTMLDivElement;
+        element.className = '';
+      }
+      this.enableScore = false; //disable score
+      this.hideResult(); //hide result div
+      this.nbrErrors = 0; //reset number of errors
+      this.textArea = ''; //reset textarea
+      //reset cursor
+      this.cursor = 0;
+
+      //length of my text
+      this.displayedTextLength = 0;
+      //focus on textarea
+      //focus on textarea
+      if (this.textAreaElement && this.textAreaElement.nativeElement) {
+        this.textAreaElement.nativeElement.focus();
+        this.textAreaElement.nativeElement.value = '';
+      }
+    });
+    //seconde restart for persistent bug(empty textarea and highlighted letters)
+    setTimeout(() => {
+      //remove bg-success and bg-danger classes
+      let length = this.currentText.length;
+      for (let i = 0; i < length; i++) {
+        const element = document.getElementById('' + i) as HTMLDivElement;
+        element.className = '';
+      }
       //focus on textarea
       if (this.textAreaElement && this.textAreaElement.nativeElement) {
         this.textAreaElement.nativeElement.focus();
       }
-    });
+    }, 10);
     return;
   }
   //on input, make checking
@@ -248,6 +281,20 @@ export class AppComponent {
           }
         );
         this.textes = this.shuffleArray(TEXTS_EN_WithoutSpecialCaracter); //set textes
+        this.currentText = this.textes[0]; //set current text
+        this.currentTextTab = this.currentText.split(''); //set current text as array
+        this.currentTextTab = this.currentTextTab.filter(
+          (value: string) => value != '\n'
+        ); //remove \n from array
+        break;
+      case 'ar':
+        //filter special characters
+        const TEXTS_AR_WithoutSpecialCaracter: string[] = TEXTS_AR.map(
+          (text) => {
+            return this.noSpecialCaracter(text);
+          }
+        );
+        this.textes = this.shuffleArray(TEXTS_AR_WithoutSpecialCaracter); //set textes
         this.currentText = this.textes[0]; //set current text
         this.currentTextTab = this.currentText.split(''); //set current text as array
         this.currentTextTab = this.currentTextTab.filter(
