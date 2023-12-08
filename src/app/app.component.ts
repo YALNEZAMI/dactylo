@@ -50,7 +50,9 @@ export class AppComponent {
       return this.noSpecialCaracter(text);
     });
     this.textes = this.shuffleArray(TEXTS_FR_WithoutSpecialCaracter); //set textes
-    // this.textes.unshift(`Commençons...`); //add empty text to the beginning of the array
+    this.textes.unshift(
+      `La réussite, c'est d’être capable d’aller d’échec en échec sans perdre son enthousiasme. Winston Churchill`
+    ); //add empty text to the beginning of the array
 
     this.currentText = this.textes[0]; //set current text
     //set edited text to current text
@@ -71,6 +73,7 @@ export class AppComponent {
     return array;
   }
   noSpecialCaracter(text: string) {
+    text = text.replace('’', "'");
     text = text.replace('’', "'");
     text = text.replace('œ', 'oe');
     text = text.replace('Œ', 'Oe');
@@ -203,13 +206,13 @@ export class AppComponent {
     tabCurrentText = tabCurrentText.filter((value) => value != '\n');
 
     //my letter
-    const mine = tabMyText[tabMyText.length - 1];
+    const myLetter = this.noSpecialCaracter(tabMyText[tabMyText.length - 1]);
     //expected letter
-    const expect = tabCurrentText[tabMyText.length - 1];
+    const expect = this.noSpecialCaracter(tabCurrentText[tabMyText.length - 1]);
     let letterhtml = document.getElementById(
       '' + this.cursor
     ) as HTMLDivElement;
-    if (mine == expect) {
+    if (myLetter == expect) {
       letterhtml.className = 'bg-success';
     } else {
       //if the 2 letters are not the same
