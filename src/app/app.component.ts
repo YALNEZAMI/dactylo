@@ -50,9 +50,7 @@ export class AppComponent {
       return this.noSpecialCaracter(text);
     });
     this.textes = this.shuffleArray(TEXTS_FR_WithoutSpecialCaracter); //set textes
-    this.textes.unshift(
-      `La réussite, c'est d’être capable d’aller d’échec en échec sans perdre son enthousiasme. Winston Churchill`
-    ); //add empty text to the beginning of the array
+    // this.textes.unshift(`Commeçons...`); //add empty text to the beginning of the array
 
     this.currentText = this.textes[0]; //set current text
     //set edited text to current text
@@ -215,6 +213,10 @@ export class AppComponent {
     if (myLetter == expect) {
       letterhtml.className = 'bg-success';
     } else {
+      let errorAudio = document.getElementById(
+        'errorAudio'
+      ) as HTMLAudioElement;
+      errorAudio.play();
       //if the 2 letters are not the same
       //add 1 to nbrErrors
       this.nbrErrors++;

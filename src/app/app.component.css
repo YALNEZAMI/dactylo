@@ -26,6 +26,10 @@ padding: 0%;
     border-radius: 20px;
     text-decoration-line: underline;
 }
+#errorAudio{
+    display: none;
+
+}
 #header{
     padding: 10px;
     background-color: black;
