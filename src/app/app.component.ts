@@ -395,6 +395,20 @@ export class AppComponent {
         return 'Erreurs';
     }
   }
+  getProportionErrorsTrans() {
+    switch (this.currentLanguage) {
+      case 'fr':
+        return "Pourcentage d'erreurs";
+      case 'en':
+        return 'Pourcentage of errors';
+      case 'ar':
+        return 'نسبة الأخطاء';
+
+      default:
+        return "Pourcentage d'erreurs";
+    }
+  }
+
   getFinishTrans() {
     switch (this.currentLanguage) {
       case 'fr':
@@ -451,5 +465,9 @@ export class AppComponent {
   hideEditText() {
     let result = document.getElementById('editText') as HTMLDivElement;
     result.style.display = 'none';
+  }
+  getProportionErrors() {
+    let res = (this.nbrErrors * 100) / this.currentText.split('').length;
+    return res.toFixed(2);
   }
 }

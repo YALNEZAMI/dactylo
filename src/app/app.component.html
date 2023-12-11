@@ -229,6 +229,10 @@
     </div>
     <!--number of errors-->
     <div class="text-center">{{ getErrorsTrans() }}: {{ nbrErrors }}</div>
+    <!--number of errors-->
+    <div class="text-center">
+      {{ getProportionErrorsTrans() }}: {{ getProportionErrors() + "%" }}
+    </div>
     <!--hide result div button-->
     <button (click)="result()" class="btn btn-warning">
       {{ getFinishTrans() }}
