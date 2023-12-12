@@ -236,23 +236,24 @@ export class AppComponent {
   }
   //go to next text
   next() {
-    let i = this.textes.indexOf(this.currentText) + 1;
-    this.currentText = this.textes[i];
+    this.textIndex++;
+    this.currentText = this.textes[this.textIndex];
     this.restart();
   }
+  textIndex: number = 0;
   //go to previous text
   previous() {
     this.restart();
-    let i = this.textes.indexOf(this.currentText) - 1;
-    this.currentText = this.textes[i];
+    this.textIndex--;
+    this.currentText = this.textes[this.textIndex];
   }
   //get if there is no next text
   noNextText() {
-    return this.textes.indexOf(this.currentText) == this.textes.length - 1;
+    return this.textIndex == this.textes.length - 1;
   }
   //get if there is no previous text
   noPreviousText() {
-    return this.textes.indexOf(this.currentText) == 0;
+    return this.textIndex == 0;
   }
   displayLangages() {
     let languages = document.getElementById('languages') as HTMLDivElement;
