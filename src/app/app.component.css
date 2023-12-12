@@ -154,6 +154,13 @@ padding: 0%;
     padding: 2px;
 
 }
+#errorSoundBtn{
+    position: absolute;
+    right: 0px;
+    top: 35px;
+    z-index: 3;
+    padding: 2px; 
+}
 #editedTextBtn{
     width: 50%;
 }

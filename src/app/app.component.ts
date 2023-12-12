@@ -43,6 +43,7 @@ export class AppComponent {
   enableScore: boolean = false; //enable score(activated at the end)
   cursor: number = 0; //position of cursor in the current text array
   displayedTextLength: number = 0; //length of my text
+  muted: boolean = false;
 
   constructor() {
     //filter special characters
@@ -213,10 +214,13 @@ export class AppComponent {
     if (myLetter == expect) {
       letterhtml.className = 'bg-success';
     } else {
-      let errorAudio = document.getElementById(
-        'errorAudio'
-      ) as HTMLAudioElement;
-      errorAudio.play();
+      //play error sound if not muted
+      if (!this.muted) {
+        let errorAudio = document.getElementById(
+          'errorAudio'
+        ) as HTMLAudioElement;
+        errorAudio.play();
+      }
       //if the 2 letters are not the same
       //add 1 to nbrErrors
       this.nbrErrors++;
@@ -469,5 +473,12 @@ export class AppComponent {
   getProportionErrors() {
     let res = (this.nbrErrors * 100) / this.currentText.split('').length;
     return res.toFixed(2);
+  }
+  mute() {
+    if (this.muted == true) {
+      this.muted = false;
+    } else {
+      this.muted = true;
+    }
   }
 }
